@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const userRoutes = require('./routes/user');
 const stuffRoutes = require('./routes/stuff');
+const path = require('path');
 
 mongoose.connect('mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false',
     { useNewUrlParser: true,
@@ -24,5 +25,6 @@ app.use(bodyParser.json());
 
 app.use('/api/stuff', stuffRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
